@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novora Management</title>
+
+     <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Optional: smoother backdrop blur on Safari */
+        nav {
+        -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+
+</head>
+
+<body class="bg-black text-white">
+
+ <!-- LOADING -->
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black">
+    <!-- Logo Reveal -->
+    <div class="overflow-hidden w-64 md:w-96">
+        <img
+        src="img/novora.png"
+        alt="Novora"
+        class="transform -translate-x-full animate-slide-in w-full object-contain"
+        />
+    </div>
+
+    <!-- Cloudy line -->
+    <div class="relative w-64 md:w-96 h-1 mt-4 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white/20 via-white/70 to-white/20 animate-cloud-line"></div>
+    </div>
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+  const loading = document.getElementById('loadingScreen');
+  const page = document.getElementById('pageContent');
+
+  // Minimum duration for animation
+  setTimeout(() => {
+    // Fade out loading
+    loading.classList.add('opacity-0', 'transition-opacity', 'duration-700');
+    setTimeout(() => {
+      loading.remove(); // remove from DOM
+      page.classList.remove('opacity-0'); // show page
+    }, 700);
+  }, 1500); // Adjust this for how long you want the animation
+});
+
+    </script>
+    <style>
+        @keyframes slide-in {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+.animate-slide-in {
+  animation: slide-in 1.2s ease-out forwards;
+}
+
+@keyframes cloud-line {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.animate-cloud-line {
+  animation: cloud-line 2s linear infinite;
+}
+
+    </style>
+<!-- Page Content -->
+<div id="pageContent" class="opacity-0">
+  <!-- Put your navbar, hero section, etc. here -->
+</div>
+
+
+
+ <!-- Navigation -->
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+>
+  <div class="max-w-[1400px] mx-auto px-8 py-6 flex items-center justify-between">
+    <!-- Logo -->
+    <button
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      class="flex items-center hover:opacity-80 transition-opacity"
+    >
+      <img src="img/novora.png" alt="Novora" class="h-12 w-auto" />
+    </button>
+
+    <!-- Desktop Links -->
+    <div class="hidden md:flex items-center gap-8">
+      <button onclick="scrollToSection('work')" class="text-[15px] text-white/70 hover:text-white transition-colors">
+        Work
+      </button>
+      <button onclick="scrollToSection('creator-partnerships')" class="text-[15px] text-white/70 hover:text-white transition-colors">
+        Creator Partnerships
+      </button>
+      <button onclick="scrollToSection('brand-partnerships')" class="text-[15px] text-white/70 hover:text-white transition-colors">
+        Brand Partnerships
+      </button>
+      <button onclick="scrollToSection('process')" class="text-[15px] text-white/70 hover:text-white transition-colors">
+        Process
+      </button>
+      <button onclick="scrollToSection('services')" class="text-[15px] text-white/70 hover:text-white transition-colors">
+        Services
+      </button>
+    </div>
+
+    <!-- CTA Button -->
+    <button
+      class="hidden md:inline-block px-6 py-2.5 bg-white text-black rounded-full hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300"
+    >
+      Book Now
+    </button>
+
+    <!-- Hamburger Button -->
+    <button id="hamburger" class="md:hidden flex flex-col gap-1.5 z-50">
+      <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+      <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+      <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobileMenu"
+    class="fixed top-0 left-0 w-full h-full bg-black/95 flex flex-col items-center justify-center gap-8 text-2xl text-white transform -translate-x-full transition-transform duration-300 md:hidden"
+  >
+    <button onclick="scrollToSection('work'); toggleMenu()" class="hover:opacity-80">Work</button>
+    <button onclick="scrollToSection('creator-partnerships'); toggleMenu()" class="hover:opacity-80">Creator Partnerships</button>
+    <button onclick="scrollToSection('brand-partnerships'); toggleMenu()" class="hover:opacity-80">Brand Partnerships</button>
+    <button onclick="scrollToSection('process'); toggleMenu()" class="hover:opacity-80">Process</button>
+    <button onclick="scrollToSection('services'); toggleMenu()" class="hover:opacity-80">Services</button>
+    <button class="px-6 py-3 bg-white text-black rounded-full hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300">
+      Book Now
+    </button>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar.classList.add('bg-black/80', 'backdrop-blur-md');
+      navbar.classList.remove('bg-transparent');
+    } else {
+      navbar.classList.remove('bg-black/80', 'backdrop-blur-md');
+      navbar.classList.add('bg-transparent');
+    }
+  });
+
+  // Scroll to section
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Toggle mobile menu
+    function toggleMenu() {
+    const isOpen = mobileMenu.classList.contains('translate-x-0');
+    if (isOpen) {
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('-translate-x-full');
+    } else {
+        // Scroll to top of the page when opening
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        mobileMenu.classList.remove('-translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+    }
+    }
+
+
+  hamburger.addEventListener('click', toggleMenu);
+</script>
+
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+    <!-- Background -->
+    <div class="absolute inset-0 z-0 overflow-hidden">
+
+        <!-- Left-to-right reveal -->
+        <div
+        id="bgReveal"
+        class="absolute inset-0 -translate-x-full transition-transform duration-1000 ease-out"
+        >
+        <img
+            src="https://images.unsplash.com/photo-1702551927220-792470e92e2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
+            alt="Abstract dark background"
+            class="w-full h-full object-cover"
+        />
+        </div>
+
+        <!-- Dark gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
+
+        <!-- Smoke overlay -->
+        <div class="absolute inset-0 opacity-30 animate-pulse">
+        <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5"></div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-[1200px] mx-auto px-8 text-center">
+
+        <!-- Logo -->
+        <div
+        id="heroLogo"
+        class="mb-12 flex justify-center opacity-0 translate-y-10 transition-all duration-1000 delay-200"
+        >
+        <img
+            src="img/novora.png"
+            alt="Novora"
+            class="w-auto h-[200px] md:h-[300px] lg:h-[400px] object-contain"
+        />
+        </div>
+
+        <!-- Headline -->
+        <h1
+        id="heroTitle"
+        class="text-[48px] md:text-[72px] leading-tight mb-6 opacity-0 translate-y-10 transition-all duration-1000 delay-400"
+        >
+        Branding that you need. Indeed.
+        </h1>
+
+        <!-- Subheadline -->
+        <p
+        id="heroSubtitle"
+        class="text-xl md:text-2xl text-white/70 mb-12 max-w-[700px] mx-auto opacity-0 translate-y-10 transition-all duration-1000 delay-600"
+        >
+        Elevating brands and creators through strategy, design, and execution.
+        </p>
+
+        <!-- CTAs -->
+        <div
+        id="heroCTAs"
+        class="flex flex-col sm:flex-row gap-4 justify-center opacity-0 translate-y-10 transition-all duration-1000 delay-800"
+        >
+        <button
+            class="px-8 py-4 bg-white text-black rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300 text-lg"
+        >
+            Book Now
+        </button>
+
+        <button
+            onclick="scrollToSection('work')"
+            class="px-8 py-4 border border-white/30 text-white rounded-full hover:bg-white/10 hover:border-white/50 transition-all duration-300 text-lg"
+        >
+            Explore Our Work
+        </button>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+        <div class="w-[2px] h-16 bg-gradient-to-b from-white to-transparent"></div>
+    </div>
+    </section>
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+            document.getElementById('bgReveal').classList.remove('-translate-x-full');
+            document.getElementById('bgReveal').classList.add('translate-x-0');
+
+            [
+                'heroLogo',
+                'heroTitle',
+                'heroSubtitle',
+                'heroCTAs'
+            ].forEach(id => {
+                const el = document.getElementById(id);
+                el.classList.remove('opacity-0', 'translate-y-10');
+                el.classList.add('opacity-100', 'translate-y-0');
+            });
+            }, 100);
+        });
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+
+    <!-- PORTFOLIO -->
+    <section id="work" class="py-32 px-8 bg-black">
+        <div class="max-w-[1400px] mx-auto">
+
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+            <h2 class="text-5xl md:text-6xl mb-6">Featured Work</h2>
+            <p class="text-xl text-white/60 max-w-[600px] mx-auto">
+                A curated selection of our brand transformations and creative executions.
+            </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-4 justify-center mb-16">
+            <button class="filter-btn active" data-filter="All">All</button>
+            <button class="filter-btn" data-filter="Branding">Branding</button>
+            <button class="filter-btn" data-filter="Campaigns">Campaigns</button>
+            <button class="filter-btn" data-filter="Creators">Creators</button>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Item -->
+            <div class="portfolio-item group" data-category="Branding">
+                <img src="https://images.unsplash.com/photo-1763069228076-c7e3995e1769?fm=jpg&q=80&w=1080"
+                    alt="Luxury Brand Identity"
+                    class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0">
+                <div class="overlay">
+                <div class="text-center px-6">
+                    <h3 class="text-2xl mb-2">Luxury Brand Identity</h3>
+                    <p class="text-white/70">Branding</p>
+                </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item group" data-category="Branding">
+                <img src="https://images.unsplash.com/photo-1762525984790-7349708a8894?fm=jpg&q=80&w=1080"
+                    alt="Creative Packaging"
+                    class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0">
+                <div class="overlay">
+                <div class="text-center px-6">
+                    <h3 class="text-2xl mb-2">Creative Packaging</h3>
+                    <p class="text-white/70">Branding</p>
+                </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item group" data-category="Campaigns">
+                <img src="https://images.unsplash.com/photo-1746904305806-a9ce08b33dc2?fm=jpg&q=80&w=1080"
+                    alt="Minimal Product Design"
+                    class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0">
+                <div class="overlay">
+                <div class="text-center px-6">
+                    <h3 class="text-2xl mb-2">Minimal Product Design</h3>
+                    <p class="text-white/70">Campaigns</p>
+                </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item group" data-category="Creators">
+                <img src="https://images.unsplash.com/photo-1673767297220-6341467cb687?fm=jpg&q=80&w=1080"
+                    alt="Creator Studio Setup"
+                    class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0">
+                <div class="overlay">
+                <div class="text-center px-6">
+                    <h3 class="text-2xl mb-2">Creator Studio Setup</h3>
+                    <p class="text-white/70">Creators</p>
+                </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+    <style>
+  .portfolio-item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background: #18181b;
+  }
+
+  .portfolio-item .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .portfolio-item:hover .overlay {
+    background: rgba(0,0,0,0.6);
+    opacity: 1;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .filter-btn.active {
+    background: white;
+    color: black;
+  }
+    </style>
+
+    <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.portfolio-item');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        items.forEach(item => {
+            const category = item.dataset.category;
+            item.style.display =
+            filter === 'All' || category === filter ? 'block' : 'none';
+        });
+        });
+    });
+    </script>
+
+    <!-- BRAND PARTNERSHIP -->
+    <section id="brand-partnerships" class="py-32 px-8 bg-zinc-950">
+    <div class="max-w-[1400px] mx-auto">
+
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: Content -->
+        <div>
+            <h2 class="text-5xl md:text-6xl mb-8">Brand Partnerships</h2>
+
+            <div class="space-y-6 text-lg text-white/70 mb-10">
+            <p>
+                We don't just design—we partner with brands who are serious about
+                long-term growth and market leadership.
+            </p>
+            <p>
+                Our approach combines strategic positioning, creative direction,
+                and flawless execution to transform how the world sees your brand.
+            </p>
+            <p>
+                From visual identity to market campaigns, we operate as an extension
+                of your team, aligned with your vision and committed to exceptional results.
+            </p>
+            </div>
+
+            <button
+            class="px-8 py-4 bg-white text-black rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300"
+            >
+            Partner With Us
+            </button>
+        </div>
+
+        <!-- Right: Brand Logos Grid -->
+        <div class="grid grid-cols-2 gap-6">
+
+            <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
+            <span class="text-white/40 text-sm tracking-wider">Premium Brand A</span>
+            </div>
+
+            <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
+            <span class="text-white/40 text-sm tracking-wider">Luxury Co.</span>
+            </div>
+
+            <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
+            <span class="text-white/40 text-sm tracking-wider">Elite Brand</span>
+            </div>
+
+            <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
+            <span class="text-white/40 text-sm tracking-wider">Prestige Group</span>
+            </div>
+
+            <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
+            <span class="text-white/40 text-sm tracking-wider">Excellence Inc.</span>
+            </div>
+
+            <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
+            <span class="text-white/40 text-sm tracking-wider">Premium Partners</span>
+            </div>
+
+        </div>
+        </div>
+    </div>
+    </section>
+
+
+    <!-- CREATOR PARTNERSHIP-->
+    <section id="creator-partnerships" class="py-32 px-8 bg-black relative overflow-hidden">
+  <!-- Background Accent -->
+  <div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] via-transparent to-white/[0.02]"></div>
+
+  <div class="max-w-[1400px] mx-auto relative">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-5xl md:text-6xl mb-6">Creator Partnerships</h2>
+      <p class="text-xl text-white/70 max-w-[700px] mx-auto">
+        Your personal brand is your most valuable asset. See how we've helped creators
+        build identities that command attention and drive real business results.
+      </p>
+    </div>
+
+    <!-- Carousel -->
+    <div class="relative">
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- LEFT: IMAGE -->
+        <div class="relative">
+          <div
+            id="creator-image-wrapper"
+            class="relative aspect-[5/6] rounded-lg overflow-hidden transition-all duration-500"
+          >
+            <img id="creator-image" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+
+            <!-- Overlay Info -->
+            <div class="absolute bottom-0 left-0 right-0 p-8">
+              <div id="creator-name" class="text-4xl mb-2"></div>
+              <div id="creator-niche" class="text-lg text-white/70 mb-2"></div>
+              <div id="creator-followers" class="text-2xl text-white/90"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: CONTENT -->
+        <div
+          id="creator-content"
+          class="transition-all duration-500"
+        >
+          <h3 class="text-3xl mb-6">Partnership Results</h3>
+
+          <div id="creator-results" class="space-y-4 mb-8"></div>
+
+          <div class="border-l-2 border-white/20 pl-6 py-4 mb-8">
+            <p id="creator-testimonial" class="text-lg text-white/70 italic mb-4"></p>
+            <p id="creator-author" class="text-white/90"></p>
+          </div>
+
+          <button class="px-8 py-4 bg-white text-black rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300">
+            Work With Novora
+          </button>
+        </div>
+
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="flex items-center justify-center gap-6 mt-12">
+
+        <button id="prevBtn"
+          class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-all">
+          ‹
+        </button>
+
+        <!-- Dots -->
+        <div id="dots" class="flex gap-2"></div>
+
+        <button id="nextBtn"
+          class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-all">
+          ›
+        </button>
+
+      </div>
+    </div>
+  </div>
+    
+    </section>
+    <script>
+    const creators = [
+        {
+        name: "Alex Rivera",
+        niche: "Tech & Lifestyle",
+        followers: "2.4M Followers",
+        image: "https://images.unsplash.com/photo-1636971828014-0f3493cba88a?fm=jpg&q=80&w=1080",
+        results: [
+            "300% increase in brand partnerships",
+            "Launched successful merch line",
+            "5x growth in newsletter subscribers"
+        ],
+        testimonial:
+            "Novora transformed my personal brand from scattered content to a cohesive empire. The strategy they developed has been a game-changer."
+        },
+        {
+        name: "Sarah Mitchell",
+        niche: "Fashion & Beauty",
+        followers: "1.8M Followers",
+        image: "https://images.unsplash.com/photo-1598040796012-297aaa2ec113?fm=jpg&q=80&w=1080",
+        results: [
+            "Secured deals with Fortune 500 brands",
+            "Built 7-figure beauty product line",
+            "Launched premium membership community"
+        ],
+        testimonial:
+            "Working with Novora was the best investment I made in my career. They understood the vision and made it reality."
+        },
+        {
+        name: "Marcus Chen",
+        niche: "Fitness & Wellness",
+        followers: "3.2M Followers",
+        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?fm=jpg&q=80&w=1080",
+        results: [
+            "Built online fitness platform with 50K+ members",
+            "Published bestselling wellness book",
+            "Launched global retreat series"
+        ],
+        testimonial:
+            "The Novora team turned my passion into a sustainable business. Their strategic approach is unmatched."
+        },
+        {
+        name: "Diana Lopez",
+        niche: "Business & Entrepreneurship",
+        followers: "950K Followers",
+        image: "https://images.unsplash.com/photo-1687575635557-a3f3ed535b56?fm=jpg&q=80&w=1080",
+        results: [
+            "Created 8-figure coaching program",
+            "Speaking at major industry conferences",
+            "Built mentorship platform with 10K+ entrepreneurs"
+        ],
+        testimonial:
+            "Novora helped me scale my influence beyond social media. They're masters at building authority and credibility."
+        }
+    ];
+
+    let currentIndex = 0;
+    let transitioning = false;
+
+    const image = document.getElementById("creator-image");
+    const nameEl = document.getElementById("creator-name");
+    const nicheEl = document.getElementById("creator-niche");
+    const followersEl = document.getElementById("creator-followers");
+    const resultsEl = document.getElementById("creator-results");
+    const testimonialEl = document.getElementById("creator-testimonial");
+    const authorEl = document.getElementById("creator-author");
+
+    const imageWrap = document.getElementById("creator-image-wrapper");
+    const contentWrap = document.getElementById("creator-content");
+
+    const dotsWrap = document.getElementById("dots");
+
+    function render(index) {
+        const c = creators[index];
+
+        image.src = c.image;
+        nameEl.textContent = c.name;
+        nicheEl.textContent = c.niche;
+        followersEl.textContent = c.followers;
+
+        resultsEl.innerHTML = "";
+        c.results.forEach(r => {
+        resultsEl.innerHTML += `
+            <div class="flex gap-3">
+            <div class="w-2 h-2 bg-white rounded-full mt-2"></div>
+            <p class="text-lg text-white/80">${r}</p>
+            </div>
+        `;
+        });
+
+        testimonialEl.textContent = `"${c.testimonial}"`;
+        authorEl.textContent = `— ${c.name}`;
+
+        [...dotsWrap.children].forEach((d, i) => {
+        d.className = i === index
+            ? "w-8 h-2 bg-white rounded-full transition-all"
+            : "w-2 h-2 bg-white/30 rounded-full hover:bg-white/50 transition-all";
+        });
+    }
+
+    function transitionTo(index) {
+        if (transitioning) return;
+        transitioning = true;
+
+        imageWrap.classList.add("opacity-0", "scale-95");
+        contentWrap.classList.add("opacity-0", "translate-x-10");
+
+        setTimeout(() => {
+        currentIndex = index;
+        render(currentIndex);
+
+        imageWrap.classList.remove("opacity-0", "scale-95");
+        contentWrap.classList.remove("opacity-0", "translate-x-10");
+
+        transitioning = false;
+        }, 500);
+    }
+
+    creators.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.onclick = () => transitionTo(i);
+        dotsWrap.appendChild(dot);
+    });
+
+    document.getElementById("nextBtn").onclick = () =>
+        transitionTo((currentIndex + 1) % creators.length);
+
+    document.getElementById("prevBtn").onclick = () =>
+        transitionTo((currentIndex - 1 + creators.length) % creators.length);
+
+    render(0);
+    </script>
+
+    <!-- PROCESS -->
+    <section id="process" class="py-32 px-8 bg-zinc-950">
+    <div class="max-w-[1400px] mx-auto">
+
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+        <h2 class="text-5xl md:text-6xl mb-6">Our Process</h2>
+        <p class="text-xl text-white/60 max-w-[700px] mx-auto">
+            A refined approach that transforms ambition into exceptional brand presence.
+        </p>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- Step 01 -->
+        <div class="group relative p-8 bg-black/40 border border-white/10 rounded-lg hover:border-white/30 hover:bg-black/60 transition-all duration-300">
+            <div class="text-6xl text-white/20 group-hover:text-white/40 transition-colors duration-300 mb-4">
+            01
+            </div>
+            <h3 class="text-3xl mb-4">Discovery Call</h3>
+            <p class="text-white/60 leading-relaxed">
+            We start by understanding your vision, challenges, and goals. This isn't a sales call—it's a strategic conversation about what success looks like for your brand.
+            </p>
+
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-lg"></div>
+            </div>
+        </div>
+
+        <!-- Step 02 -->
+        <div class="group relative p-8 bg-black/40 border border-white/10 rounded-lg hover:border-white/30 hover:bg-black/60 transition-all duration-300">
+            <div class="text-6xl text-white/20 group-hover:text-white/40 transition-colors duration-300 mb-4">
+            02
+            </div>
+            <h3 class="text-3xl mb-4">Strategy & Direction</h3>
+            <p class="text-white/60 leading-relaxed">
+            Before any pixel is placed, we develop a comprehensive strategic framework. Market positioning, audience insights, and creative direction all aligned with your business objectives.
+            </p>
+
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-lg"></div>
+            </div>
+        </div>
+
+        <!-- Step 03 -->
+        <div class="group relative p-8 bg-black/40 border border-white/10 rounded-lg hover:border-white/30 hover:bg-black/60 transition-all duration-300">
+            <div class="text-6xl text-white/20 group-hover:text-white/40 transition-colors duration-300 mb-4">
+            03
+            </div>
+            <h3 class="text-3xl mb-4">Design & Execution</h3>
+            <p class="text-white/60 leading-relaxed">
+            This is where vision becomes reality. From visual identity to campaign assets, every element is crafted with precision and purpose. Expect world-class work, delivered on time.
+            </p>
+
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-lg"></div>
+            </div>
+        </div>
+
+        <!-- Step 04 -->
+        <div class="group relative p-8 bg-black/40 border border-white/10 rounded-lg hover:border-white/30 hover:bg-black/60 transition-all duration-300">
+            <div class="text-6xl text-white/20 group-hover:text-white/40 transition-colors duration-300 mb-4">
+            04
+            </div>
+            <h3 class="text-3xl mb-4">Launch & Iterate</h3>
+            <p class="text-white/60 leading-relaxed">
+            We don't just hand off files and disappear. Launch support, performance tracking, and continuous refinement ensure your brand stays sharp and relevant in the market.
+            </p>
+
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none">
+            <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-lg"></div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-32 px-8 bg-black">
+  <div class="max-w-[1400px] mx-auto">
+
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <h2 class="text-5xl md:text-6xl mb-6">Services</h2>
+      <p class="text-xl text-white/60 max-w-[700px] mx-auto">
+        Full-spectrum creative services for brands ready to own their category.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+
+      <!-- Service 01 -->
+      <div class="group p-8 bg-zinc-950 border border-white/10 rounded-lg hover:border-white/30 hover:bg-zinc-900/50 transition-all duration-300">
+        <div class="w-12 h-12 mb-6 flex items-center justify-center rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors duration-300">
+          <!-- Target Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target w-6 h-6 text-white" data-fg-bmhl14="1.70:1.2484:/src/app/components/services-section.tsx:49:19:1836:39:e:Icon"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+        </div>
+        <h3 class="text-2xl mb-3">Brand Strategy</h3>
+        <p class="text-white/60 leading-relaxed">
+          Strategic positioning and market analysis that defines who you are and how you compete.
+        </p>
+      </div>
+
+      <!-- Service 02 -->
+      <div class="group p-8 bg-zinc-950 border border-white/10 rounded-lg hover:border-white/30 hover:bg-zinc-900/50 transition-all duration-300">
+        <div class="w-12 h-12 mb-6 flex items-center justify-center rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors duration-300">
+          <!-- Palette Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-palette w-6 h-6 text-white"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
+        </div>
+        <h3 class="text-2xl mb-3">Visual Identity</h3>
+        <p class="text-white/60 leading-relaxed">
+          Cohesive design systems that communicate your brand across every touchpoint.
+        </p>
+      </div>
+
+      <!-- Service 03 -->
+      <div class="group p-8 bg-zinc-950 border border-white/10 rounded-lg hover:border-white/30 hover:bg-zinc-900/50 transition-all duration-300">
+        <div class="w-12 h-12 mb-6 flex items-center justify-center rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors duration-300">
+          <!-- TrendingUp Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up w-6 h-6 text-white" data-fg-bmhl14="1.70:1.2484:/src/app/components/services-section.tsx:49:19:1836:39:e:Icon"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+        </div>
+        <h3 class="text-2xl mb-3">Marketing Campaigns</h3>
+        <p class="text-white/60 leading-relaxed">
+          High-impact campaigns designed to drive awareness, engagement, and conversions.
+        </p>
+      </div>
+
+      <!-- Service 04 -->
+      <div class="group p-8 bg-zinc-950 border border-white/10 rounded-lg hover:border-white/30 hover:bg-zinc-900/50 transition-all duration-300">
+        <div class="w-12 h-12 mb-6 flex items-center justify-center rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors duration-300">
+          <!-- Sparkles Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-6 h-6 text-white"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
+        </div>
+        <h3 class="text-2xl mb-3">Creative Direction</h3>
+        <p class="text-white/60 leading-relaxed">
+          End-to-end creative leadership for brands that demand exceptional execution.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <button class="px-8 py-4 bg-white text-black rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300">
+        Book Now
+      </button>
+    </div>
+
+  </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="relative py-40 px-8 overflow-hidden bg-black">
+
+    <!-- Smoke background -->
+    <div class="absolute inset-0">
+        <img
+        src="https://images.unsplash.com/photo-1702551927220-792470e92e2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg"
+        alt="Smoke background"
+        class="w-full h-full object-cover animate-smoke-float"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
+    </div>
+
+    <!-- Glow -->
+    <div class="absolute inset-0 flex items-center justify-center">
+        <div class="w-[500px] h-[500px] bg-white/5 rounded-full blur-[100px]"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-[900px] mx-auto text-center text-white">
+        <h2 class="text-6xl md:text-7xl mb-8 leading-tight">
+        Create something unforgettable.
+        </h2>
+        <p class="text-xl md:text-2xl mb-12 max-w-[600px] mx-auto">
+        Partner with a team that understands vision, execution, and impact.
+        </p>
+        <button class="px-12 py-5 bg-white text-black text-lg rounded-full hover:shadow-[0_0_40px_rgba(255,255,255,0.6)] transition-all duration-300 transform hover:scale-105">
+        Book Now
+        </button>
+    </div>
+
+    <!-- Add animation keyframes -->
+    <style>
+        @keyframes smokeFloat {
+        0% { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
+        25% { transform: translate(20px, -10px) scale(1.02); opacity: 0.5; }
+        50% { transform: translate(-20px, -20px) scale(1.01); opacity: 0.6; }
+        75% { transform: translate(15px, -10px) scale(1.02); opacity: 0.5; }
+        100% { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
+        }
+
+        .animate-smoke-float {
+        animation: smokeFloat 30s ease-in-out infinite;
+        }
+    </style>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-white/10 py-12 px-8">
+  <div class="max-w-[1400px] mx-auto">
+    <div class="grid md:grid-cols-3 gap-12 mb-12">
+      
+      <!-- Logo and Tagline -->
+      <div>
+        <img src="img/novora.png" alt="Novora" class="h-12 w-auto mb-4">
+        <p class="text-white/50 text-sm">
+          Premium branding and creative execution for ambitious brands.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-sm tracking-wider mb-4 text-white/70">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#services" class="text-white/50 hover:text-white transition-colors">
+              Services
+            </a>
+          </li>
+          <li>
+            <a href="#process" class="text-white/50 hover:text-white transition-colors">
+              Process
+            </a>
+          </li>
+          <li>
+            <a href="#work" class="text-white/50 hover:text-white transition-colors">
+              Work
+            </a>
+          </li>
+          <li>
+            <a href="#brand-partnerships" class="text-white/50 hover:text-white transition-colors">
+              Partnerships
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social -->
+      <div>
+        <h3 class="text-sm tracking-wider mb-4 text-white/70">Connect</h3>
+        <div class="flex gap-4">
+          <!-- Instagram -->
+          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7a5 5 0 100 10 5 5 0 000-10z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.5 6.5h.01" />
+            </svg>
+          </a>
+
+          <!-- Twitter -->
+          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0022.4 1a9 9 0 01-2.83 1.08 4.52 4.52 0 00-7.69 4.13A12.94 12.94 0 013 4s-4 9 5 13a13 13 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z"/>
+            </svg>
+          </a>
+
+          <!-- Mail -->
+          <a href="mailto:info@novora.com" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center text-white/50 text-sm">
+      &copy; <span id="year">2026</span> Novora. All rights reserved.
+    </div>
+  </div>
+    </footer>
+
+</body>
+</html>
