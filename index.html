@@ -19,7 +19,6 @@
 
 <body class="bg-black text-white">
 
- <!-- LOADING -->
     <!-- Loading Screen -->
     <div id="loadingScreen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black">
     <!-- Logo Reveal -->
@@ -470,27 +469,66 @@
         <div class="grid grid-cols-2 gap-6">
 
             <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
-            <span class="text-white/40 text-sm tracking-wider">Premium Brand A</span>
+            <img
+                src="./img/Brands/Brand1.png"
+                alt="Premium Brand A"
+                class="max-h-[60%] max-w-[70%] object-contain opacity-70 hover:opacity-100 transition"
+              />
             </div>
 
             <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
-            <span class="text-white/40 text-sm tracking-wider">Luxury Co.</span>
+            <img
+                src="./img/Brands/Brand2.jpg"
+                alt="Premium Brand A"
+                class="max-h-[60%] max-w-[70%] object-contain opacity-70 hover:opacity-100 transition"
+              />
             </div>
 
             <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
-            <span class="text-white/40 text-sm tracking-wider">Elite Brand</span>
+            <img
+                src="./img/Brands/Brand3.png"
+                alt="Premium Brand A"
+                class="max-h-[60%] max-w-[70%] object-contain opacity-70 hover:opacity-100 transition"
+              />
             </div>
 
             <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
-            <span class="text-white/40 text-sm tracking-wider">Prestige Group</span>
+            <img
+                src="./img/Brands/Brand4.webp"
+                alt="Premium Brand A"
+                class="max-h-[60%] max-w-[70%] object-contain opacity-70 hover:opacity-100 transition"
+              />
             </div>
 
             <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
-            <span class="text-white/40 text-sm tracking-wider">Excellence Inc.</span>
+            <img
+                src="./img/Brands/Brand5.png"
+                alt="Premium Brand A"
+                class="max-h-[60%] max-w-[70%] object-contain opacity-70 hover:opacity-100 transition"
+              />
             </div>
 
             <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
-            <span class="text-white/40 text-sm tracking-wider">Premium Partners</span>
+            <img
+                src="./img/Brands/Brand6.webp"
+                alt="Premium Brand A"
+                class="max-h-[60%] max-w-[70%] object-contain opacity-70 hover:opacity-100 transition"
+              />
+            </div>
+            <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
+            <img
+                src="./img/Brands/Brand7.png"
+                alt="Premium Brand A"
+                class="max-h-[60%] max-w-[70%] object-contain opacity-70 hover:opacity-100 transition"
+              />
+            </div>
+
+            <div class="aspect-[3/2] bg-zinc-900 rounded-lg flex items-center justify-center border border-white/5 hover:border-white/20 transition-all duration-300">
+            <img
+                src="./img/Brands/Brand8.png"
+                alt="Premium Brand A"
+                class="max-h-[60%] max-w-[70%] object-contain opacity-70 hover:opacity-100 transition"
+              />
             </div>
 
         </div>
@@ -508,10 +546,10 @@
 
     <!-- Header -->
     <div class="text-center mb-16">
-      <h2 class="text-5xl md:text-6xl mb-6">Creator Partnerships</h2>
+      <h2 class="text-5xl md:text-6xl mb-6">Creators we've collaborated with...</h2>
       <p class="text-xl text-white/70 max-w-[700px] mx-auto">
-        Your personal brand is your most valuable asset. See how we've helped creators
-        build identities that command attention and drive real business results.
+        Our network includes creators who have collaborated across many industries including music,
+        entertainment, sports, lifestyle, and digital culture
       </p>
     </div>
 
@@ -526,14 +564,18 @@
             id="creator-image-wrapper"
             class="relative aspect-[5/6] rounded-lg overflow-hidden transition-all duration-500"
           >
-            <img id="creator-image" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+            <a id="creator-link" target="_blank"  href="#" target="_blank" rel="noopener noreferrer">
+              <img id="creator-image" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </a>
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none"></div>
 
             <!-- Overlay Info -->
             <div class="absolute bottom-0 left-0 right-0 p-8">
               <div id="creator-name" class="text-4xl mb-2"></div>
               <div id="creator-niche" class="text-lg text-white/70 mb-2"></div>
               <div id="creator-followers" class="text-2xl text-white/90"></div>
+              <div id="creator-handle" class="text-lg text-white/60"></div>
             </div>
           </div>
         </div>
@@ -583,10 +625,12 @@
     <script>
     const creators = [
         {
-        name: "Alex Rivera",
-        niche: "Tech & Lifestyle",
-        followers: "2.4M Followers",
-        image: "https://images.unsplash.com/photo-1636971828014-0f3493cba88a?fm=jpg&q=80&w=1080",
+        name: "6ix9ine",
+        niche: "Rapper",
+        followers: "23.3M Followers",
+        handle: "@6ix9ine",
+        instagram: "https://www.instagram.com/6ix9ine?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+        image: "./img/Creators/6ix9nine.jpg",
         results: [
             "300% increase in brand partnerships",
             "Launched successful merch line",
@@ -596,10 +640,12 @@
             "Novora transformed my personal brand from scattered content to a cohesive empire. The strategy they developed has been a game-changer."
         },
         {
-        name: "Sarah Mitchell",
-        niche: "Fashion & Beauty",
-        followers: "1.8M Followers",
-        image: "https://images.unsplash.com/photo-1598040796012-297aaa2ec113?fm=jpg&q=80&w=1080",
+        name: "Lily Phillips",
+        niche: "Influencer",
+        followers: "1.5M Followers",
+        handle: "@lilyphillip_s",
+        instagram: "https://www.instagram.com/lilyphillip_s?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+        image: "./img/Creators/lilyphillip_s.jpg",
         results: [
             "Secured deals with Fortune 500 brands",
             "Built 7-figure beauty product line",
@@ -609,10 +655,12 @@
             "Working with Novora was the best investment I made in my career. They understood the vision and made it reality."
         },
         {
-        name: "Marcus Chen",
-        niche: "Fitness & Wellness",
-        followers: "3.2M Followers",
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?fm=jpg&q=80&w=1080",
+        name: "Braeden Carter",
+        niche: "Streamer",
+        followers: "396K Followers",
+        handle: "@braedencarterrr",
+        instagram: "https://www.instagram.com/braedencarterrr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+        image: "./img/Creators/braedencarterrr.png",
         results: [
             "Built online fitness platform with 50K+ members",
             "Published bestselling wellness book",
@@ -622,10 +670,12 @@
             "The Novora team turned my passion into a sustainable business. Their strategic approach is unmatched."
         },
         {
-        name: "Diana Lopez",
-        niche: "Business & Entrepreneurship",
-        followers: "950K Followers",
-        image: "https://images.unsplash.com/photo-1687575635557-a3f3ed535b56?fm=jpg&q=80&w=1080",
+        name: "Michael Beasley",
+        niche: "Athlete",
+        followers: "641K Followers",
+        handle: "@michael8easley",
+        instagram:"https://www.instagram.com/michael8easley?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+        image: "./img/Creators/michael8easley.jpeg",
         results: [
             "Created 8-figure coaching program",
             "Speaking at major industry conferences",
@@ -646,6 +696,9 @@
     const resultsEl = document.getElementById("creator-results");
     const testimonialEl = document.getElementById("creator-testimonial");
     const authorEl = document.getElementById("creator-author");
+    const handleEl = document.getElementById("creator-handle");
+    const linkEl = document.getElementById("creator-link");
+
 
     const imageWrap = document.getElementById("creator-image-wrapper");
     const contentWrap = document.getElementById("creator-content");
@@ -659,6 +712,9 @@
         nameEl.textContent = c.name;
         nicheEl.textContent = c.niche;
         followersEl.textContent = c.followers;
+        handleEl.textContent = c.handle;
+        linkEl.href = c.instagram;
+
 
         resultsEl.innerHTML = "";
         c.results.forEach(r => {
@@ -959,7 +1015,7 @@
         <h3 class="text-sm tracking-wider mb-4 text-white/70">Connect</h3>
         <div class="flex gap-4">
           <!-- Instagram -->
-          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+          <a href="https://www.instagram.com/novoramgt?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7a5 5 0 100 10 5 5 0 000-10z" />
@@ -982,7 +1038,7 @@
           </a>
 
           <!-- Mail -->
-          <a href="mailto:info@novora.com" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+          <a href="mailto:novoramgt@gmail.com" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
@@ -994,6 +1050,10 @@
     <!-- Copyright -->
     <div class="text-center text-white/50 text-sm">
       &copy; <span id="year">2026</span> Novora. All rights reserved.
+    </div>
+    <!-- Disclaimer -->
+    <div class="text-center text-white/40 text-xs mt-4">
+      Disclaimer: The information provided on this website is for general informational purposes only and does not constitute professional advice.
     </div>
   </div>
     </footer>
