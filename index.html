@@ -19,6 +19,52 @@
 
 <body class="bg-black text-white">
 
+  <!-- GLOWING CURSOR -->
+<div class="cursor-dot"></div>
+
+<style>
+  body {
+    cursor: none; /* hide default cursor */
+  }
+
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 12px 6px rgb(255, 255, 255);
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+</style>
+
+<script>
+  const cursor = document.querySelector('.cursor-dot');
+  let mouseX = 0, mouseY = 0;
+  let posX = 0, posY = 0;
+  const speed = 0.15; // smaller = smoother/slower
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animate() {
+    // Ease the cursor toward the mouse
+    posX += (mouseX - posX) * speed;
+    posY += (mouseY - posY) * speed;
+    cursor.style.transform = `translate(${posX}px, ${posY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+
     <!-- Loading Screen -->
     <div id="loadingScreen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black">
     <!-- Logo Reveal -->
