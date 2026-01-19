@@ -357,120 +357,137 @@ Make your brand stand out with custom designs and packaging. Share your story wi
         }
     </script>
 
+
     <!-- PORTFOLIO -->
-    <!-- HERO SECTION -->
-<section class="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden">
+<section id="work" class="py-32 px-8 bg-black">
+  <div class="max-w-[1400px] mx-auto">
 
-  <!-- Background -->
-  <div class="absolute inset-0 z-0 overflow-hidden">
-
-    <!-- Left-to-right reveal -->
-    <div
-      id="bgReveal"
-      class="absolute inset-0 -translate-x-full transition-transform duration-1000 ease-out"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1702551927220-792470e92e2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-        alt="Abstract dark background"
-        class="w-full h-full object-cover"
-      />
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-5xl md:text-6xl mb-6">Featured Work</h2>
+      <p class="text-xl text-white/60 max-w-[600px] mx-auto">
+        A curated selection of our brand transformations and creative executions.
+      </p>
     </div>
 
-    <!-- Dark gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
-
-    <!-- Smoke overlay -->
-    <div class="absolute inset-0 opacity-30 animate-pulse">
-      <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5"></div>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <div class="relative z-10 max-w-[1200px] mx-auto px-8 text-center pt-20 sm:pt-0">
-
-    <!-- Logo -->
-    <div
-      id="heroLogo"
-      class="mb-12 flex justify-center opacity-0 translate-y-10 transition-all duration-1000 delay-200"
-    >
-      <img
-        src="img/novora.png"
-        alt="Novora"
-        class="w-auto h-[200px] md:h-[300px] lg:h-[400px] object-contain"
-      />
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap gap-4 justify-center mb-16">
+      <button class="filter-btn active" data-filter="All">All</button>
+      <button class="filter-btn" data-filter="Branding">Branding</button>
+      <button class="filter-btn" data-filter="Campaigns">Campaigns</button>
+      <button class="filter-btn" data-filter="Creators">Creators</button>
     </div>
 
-    <!-- Headline -->
-    <h1
-      id="heroTitle"
-      class="text-[48px] md:text-[72px] leading-tight mb-6 opacity-0 translate-y-10 transition-all duration-1000 delay-400"
-    >
-      Creator's Unfair Advantage
-    </h1>
+    <!-- Portfolio Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-    <!-- Subheadline -->
-    <p
-      id="heroSubtitle"
-      class="text-xl md:text-2xl text-white/70 mb-12 max-w-[700px] mx-auto opacity-0 translate-y-10 transition-all duration-1000 delay-600"
-    >
-      Make your brand stand out with custom designs and packaging. Share your story with bold visuals and smart collabs that get noticed.
-    </p>
+      <!-- Item -->
+      <div class="portfolio-item group" data-category="Branding">
+        <img src="img/Stock/designer bags.jpg" alt="Luxury Brand Identity" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0">
+        <div class="overlay">
+          <div class="text-center px-6">
+            <h3 class="text-2xl mb-2">Luxury Brand Identity</h3>
+            <p class="text-white/70">Branding</p>
+          </div>
+        </div>
+      </div>
 
-    <!-- CTAs -->
-    <div
-      id="heroCTAs"
-      class="flex flex-col sm:flex-row gap-4 justify-center opacity-0 translate-y-10 transition-all duration-1000 delay-800"
-    >
-      <a href="https://cal.com/novora/30min" target="_blank">
-        <button
-          class="px-8 py-4 bg-white text-black rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-300 text-lg"
-        >
-          Book Now
-        </button>
-      </a>
+      <div class="portfolio-item group" data-category="Branding">
+        <img src="img/Stock/cat in the rr.jpg" alt="Creative Packaging" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0">
+        <div class="overlay">
+          <div class="text-center px-6">
+            <h3 class="text-2xl mb-2">Creative Packaging</h3>
+            <p class="text-white/70">Branding</p>
+          </div>
+        </div>
+      </div>
 
-      <button
-        onclick="scrollToSection('work')"
-        class="px-8 py-4 border border-white/30 text-white rounded-full hover:bg-white/10 hover:border-white/50 transition-all duration-300 text-lg"
-      >
-        Explore Our Work
-      </button>
+      <div class="portfolio-item group" data-category="Campaigns">
+        <img src="img/Stock/plan and trucks.jpg" alt="Minimal Product Design" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0">
+        <div class="overlay">
+          <div class="text-center px-6">
+            <h3 class="text-2xl mb-2">Minimal Product Design</h3>
+            <p class="text-white/70">Campaigns</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item group" data-category="Creators">
+        <img src="img/Stock/money passport.jpg" alt="Creator Studio Setup" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0">
+        <div class="overlay">
+          <div class="text-center px-6">
+            <h3 class="text-2xl mb-2">Creator Studio Setup</h3>
+            <p class="text-white/70">Creators</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item group" data-category="Campaigns">
+        <img src="img/Stock/palm trees.jpg" alt="Minimal Product Design" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0">
+        <div class="overlay">
+          <div class="text-center px-6">
+            <h3 class="text-2xl mb-2">Creative Outreach</h3>
+            <p class="text-white/70">Campaigns</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item group" data-category="Creators">
+        <img src="img/Stock/martini.jpg" alt="Creator Studio Setup" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 grayscale group-hover:grayscale-0">
+        <div class="overlay">
+          <div class="text-center px-6">
+            <h3 class="text-2xl mb-2">Creator Partnerships</h3>
+            <p class="text-white/70">Creators</p>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
-
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-    <div class="w-[2px] h-16 bg-gradient-to-b from-white to-transparent"></div>
   </div>
 </section>
 
-<script>
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('bgReveal').classList.remove('-translate-x-full');
-    document.getElementById('bgReveal').classList.add('translate-x-0');
-
-    [
-      'heroLogo',
-      'heroTitle',
-      'heroSubtitle',
-      'heroCTAs'
-    ].forEach(id => {
-      const el = document.getElementById(id);
-      el.classList.remove('opacity-0', 'translate-y-10');
-      el.classList.add('opacity-100', 'translate-y-0');
-    });
-  }, 100);
-});
-
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' });
+    <style>
+  .portfolio-item {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background: #18181b;
   }
-}
-</script>
 
+  .portfolio-item .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .portfolio-item:hover .overlay {
+    background: rgba(0,0,0,0.6);
+    opacity: 1;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .filter-btn.active {
+    background: white;
+    color: black;
+  }
+    </style>
 
     <script>
     const buttons = document.querySelectorAll('.filter-btn');
